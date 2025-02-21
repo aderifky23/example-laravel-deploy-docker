@@ -18,13 +18,7 @@ COPY . /app
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install dependencies
-RUN composer install --no-dev --optimize-autoloader
-
-# Ensure file worker frankenphp
-RUN if [ ! -f public/frankenphp-worker.php ]; then echo '<?php' > public/frankenphp-worker.php; fi
-
-# Install Laravel Octane with FrankenPHP Server
-RUN echo "yes" | php artisan octane:install --server=frankenphp
+RUN composer install --no-dev --optimize-autoloader || (cat /app/composer.log && exit 1)
 
 # Set ENV
 ENV APP_ENV=production
