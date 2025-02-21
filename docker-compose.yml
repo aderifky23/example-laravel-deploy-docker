@@ -2,6 +2,7 @@ services:
   frankenphp:
     build:
       context: .
+    container_name: laravel-dukcapil
     entrypoint: php artisan octane:frankenphp
     ports:
       - "8000:8000"
