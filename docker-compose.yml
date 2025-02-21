@@ -5,7 +5,7 @@ services:
     container_name: contoh-laravel
     restart: always
     ports:
-      - "8000:8000"
+      - "8083:8083"
     networks:
       - contoh-db-network
 

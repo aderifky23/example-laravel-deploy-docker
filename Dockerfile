@@ -34,7 +34,7 @@ ENV APP_ENV=production
 ENV APP_DEBUG=false
 
 # expose port
-EXPOSE 8000
+EXPOSE 8083
 
 # Define Entrypoint / CMD
-ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
+ENTRYPOINT ["php", "artisan", "octane:frankenphp", "--host=0.0.0.0", "--port=8083"]
