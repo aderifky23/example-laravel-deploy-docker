@@ -21,7 +21,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer install --ignore-platform-reqs --no-dev -a
 
 # Chek config franken
-RUN if [ ! -f public/frankenphp-worker.php ]; then echo '<?php' > public/frankenphp-worker
+RUN if [ ! -f public/frankenphp-worker.php ]; then echo '<?php' > public/frankenphp-worker.php; fi
 
 # Install frankenphp
 RUN echo "yes" | php artisan octane:install --server=frankenphp 
