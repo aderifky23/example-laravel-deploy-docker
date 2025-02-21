@@ -18,7 +18,16 @@ COPY . /app
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install dependencies
-RUN composer install --no-dev --optimize-autoloader || (cat /app/composer.log && exit 1)
+RUN composer install --ignore-platform-reqs --no-dev -a
+
+# Chek config franken
+RUN if [ ! -f public/frankenphp-worker.php ]; then echo '<?php' > public/frankenphp-worker
+
+# Install frankenphp
+RUN echo "yes" | php artisan octane:install --server=frankenphp 
+
+# Set Permission to storage and cache
+RUN chmod -R 777 storage bootstrap/cache 
 
 # Set ENV
 ENV APP_ENV=production
