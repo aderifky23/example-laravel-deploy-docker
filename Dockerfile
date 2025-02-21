@@ -1,4 +1,4 @@
-FROM dunglas/frankenphp:latest
+FROM dunglas/frankenphp
 
 # Install PHP Extensions
 RUN install-php-extensions \
@@ -18,7 +18,7 @@ WORKDIR /app
 COPY . /app
 
 # Install dependencies
-RUN composer install
+RUN composer install --no-dev --optimize-autoloader
 
 # Ensure file worker frankenphp
 RUN if [ ! -f public/frankenphp-worker.php ]; then echo '<?php' > public/frankenphp-worker.php; fi
@@ -26,15 +26,9 @@ RUN if [ ! -f public/frankenphp-worker.php ]; then echo '<?php' > public/franken
 # Install Laravel Octane with FrankenPHP Server
 RUN echo "yes" | php artisan octane:install --server=frankenphp
 
-# Set Permission
-RUN chmod -R 777 storage bootstrap/cache
-
 # Set ENV
 ENV APP_ENV=production
 ENV APP_DEBUG=false
 
-# Tentukan port
-EXPOSE 8000
-
 # Define Entrypoint / CMD
-ENTRYPOINT ["php", "artisan", "octane:frankenphp", "--host=0.0.0.0"]
+ENTRYPOINT ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=8000"]
