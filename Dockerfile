@@ -33,5 +33,8 @@ RUN chmod -R 777 storage bootstrap/cache
 ENV APP_ENV=production
 ENV APP_DEBUG=false
 
+# expose port
+EXPOSE 8000
+
 # Define Entrypoint / CMD
 ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
