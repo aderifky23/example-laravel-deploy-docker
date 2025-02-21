@@ -2,7 +2,7 @@ services:
   frankenphp:
     build:
       context: .
-    container_name: laravel-dukcapil
+    container_name: contoh-laravel
     restart: always
     ports:
       - "8000:8000"
