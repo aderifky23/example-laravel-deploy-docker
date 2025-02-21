@@ -8,8 +8,6 @@ services:
       - "8000:8000"
     networks:
       - contoh-db-network
-    volumes:
-      - .:/app
 
 networks:
   contoh-db-network:
