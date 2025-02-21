@@ -4,6 +4,7 @@ FROM dunglas/frankenphp
 RUN install-php-extensions \
     pcntl \
     zip \
+    unzip \
     bcmath \
     pdo_mysql \
     mysqli
@@ -19,9 +20,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Install dependencies
 RUN composer install --ignore-platform-reqs --no-dev -a
-
-# Chek config franken
-RUN if [ ! -f public/frankenphp-worker.php ]; then echo '<?php' > public/frankenphp-worker.php; fi
 
 # Install frankenphp
 RUN echo "yes" | php artisan octane:install --server=frankenphp 
