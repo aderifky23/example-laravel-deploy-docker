@@ -8,14 +8,14 @@ RUN install-php-extensions \
     pdo_mysql \
     mysqli
 
-# Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
 # Set working directory
 WORKDIR /app
 
 # Copy all files to working directory
 COPY . /app
+
+# Install Composer 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader
