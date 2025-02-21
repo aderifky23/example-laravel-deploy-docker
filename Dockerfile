@@ -4,7 +4,6 @@ FROM dunglas/frankenphp
 RUN install-php-extensions \
     pcntl \
     zip \
-    unzip \
     bcmath \
     pdo_mysql \
     mysqli
