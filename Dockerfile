@@ -37,4 +37,4 @@ ENV APP_DEBUG=false
 EXPOSE 8000
 
 # Define Entrypoint / CMD
-ENTRYPOINT ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=8000"]
+ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
