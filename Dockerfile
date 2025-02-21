@@ -18,7 +18,7 @@ WORKDIR /app
 COPY . /app
 
 # Install dependencies
-composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader
 
 # Ensure file worker frankenphp
 RUN if [ ! -f public/frankenphp-worker.php ]; then echo '<?php' > public/frankenphp-worker.php; fi
