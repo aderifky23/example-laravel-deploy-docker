@@ -1,8 +1,5 @@
 FROM dunglas/frankenphp
 
-# Enable settings PHP production
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-
 # Install PHP Extensions
 RUN install-php-extensions \
     pcntl \
@@ -34,4 +31,4 @@ ENV APP_ENV=production
 ENV APP_DEBUG=false
 
 # Define Entrypoint / CMD
-ENTRYPOINT ["php", "artisan", "octane:frankenphp", "--host=0.0.0.0", "--port=8000"]
+ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
