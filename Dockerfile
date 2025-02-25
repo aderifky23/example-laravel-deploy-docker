@@ -1,5 +1,7 @@
 FROM dunglas/frankenphp
 
+RUN apt-get update && apt-get install -y ca-certificates curl
+
 # Install PHP Extensions
 RUN install-php-extensions \
     pcntl \
@@ -28,10 +30,7 @@ RUN chmod -R 777 storage bootstrap/cache
 
 # Set ENV
 ENV APP_ENV=production
-ENV APP_DEBUG=false
-
-# expose port
-EXPOSE 8083
+ENV APP_DEBUG=true
 
 # Define Entrypoint / CMD
 ENTRYPOINT ["php", "artisan", "octane:frankenphp", "--host=0.0.0.0", "--port=8083"]
